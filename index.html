@@ -106,6 +106,10 @@
         align-items: center;
       }
       
+      .overlay.open {
+        display: flex;
+      }
+      
       .overlay-content {
         background-color: white;
         padding: 2rem;
@@ -163,7 +167,7 @@
         </nav>
         
         <div class="burger-container md:hidden">
-          <div class="burger-menu">
+          <div class="burger-menu" id="burgerMenu">
             <span class="burger-line"></span>
             <span class="burger-line"></span>
             <span class="burger-line"></span>
@@ -176,7 +180,7 @@
       </div>
       
       <!-- Mobile Menu -->
-      <div class="mobile-menu md:hidden">
+      <div class="mobile-menu md:hidden" id="mobileMenu">
         <a href="#" class="text-sm hover:text-accent transition-all duration-300">Home</a>
         <a href="#about" class="text-sm hover:text-accent transition-all duration-300">About</a>
         <a href="#programs" class="text-sm hover:text-accent transition-all duration-300">Programs</a>
@@ -344,7 +348,7 @@
       </form>
       <div class="mt-10 text-center">
         <p class="text-gray-700 dark:text-gray-300">Or reach us directly:</p>
-        <a href="https://wa.me/1234567890" class="inline-block mt-4 bg-green-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-600">Chat on WhatsApp</a>
+        <a href="https://wa.me/254113336697" class="inline-block mt-4 bg-green-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-600">Chat on WhatsApp</a>
       </div>
     </section>
 
@@ -372,8 +376,8 @@
         });
         
         // Burger menu functionality
-        const burgerMenu = document.querySelector('.burger-menu');
-        const mobileMenu = document.querySelector('.mobile-menu');
+        const burgerMenu = document.getElementById('burgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
         const body = document.body;
         
         if (burgerMenu && mobileMenu) {
@@ -412,13 +416,17 @@
       
       // Function to open an overlay
       function openOverlay(programId) {
-        document.getElementById(programId).classList.remove('hidden');
+        const overlay = document.getElementById(programId);
+        overlay.classList.remove('hidden');
+        overlay.classList.add('open');
         document.body.style.overflow = 'hidden'; // Prevent scrolling when overlay is open
       }
 
       // Function to close an overlay
       function closeOverlay(programId) {
-        document.getElementById(programId).classList.add('hidden');
+        const overlay = document.getElementById(programId);
+        overlay.classList.add('hidden');
+        overlay.classList.remove('open');
         document.body.style.overflow = ''; // Restore scrolling
       }
     </script>
